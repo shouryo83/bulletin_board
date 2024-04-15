@@ -49,7 +49,7 @@ class ThreadController extends Controller
     
     public function show(Thread $thread)
     {
-        $comments = $thread->comments()->with(['user'])->paginate(20);
+        $comments = $thread->comments()->with(['user'])->paginate(5);
 
         return view('threads.show', [
             'thread' => $thread,
@@ -60,5 +60,14 @@ class ThreadController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->only(['create', 'store']);
+    }
+    
+    public function destory(Thread $thread)
+    {
+        $this->authorize('delete', $thread);
+        
+        $thread->delete();
+        
+        return back();
     }
 }

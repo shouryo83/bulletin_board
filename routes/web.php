@@ -35,5 +35,7 @@ Route::get('/threads/create', [ThreadController::class, 'create'])->name('thread
 Route::post('/threads/create', [ThreadController::class, 'store'])->name('threads,store');
 Route::get('/threads/{thread}', [ThreadController::class, 'show'])->name('threads.show');
 Route::post('/threads/{thread}/comments', [CommentController::class, 'store'])->name('comments.store');
+Route::delete('/comments/{comment}', [CommentController::class, 'destory'])->name('comments.destory');
+Route::delete('/threads/{thread}', [ThreadController::class, 'destory'])->name('threads.destory');
 
 require __DIR__.'/auth.php';

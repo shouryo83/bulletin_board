@@ -28,4 +28,13 @@ class CommentController extends Controller
     {
         $this->middleware('auth')->only(['store']);
     }
+    
+    public function destory(Comment $comment)
+    {
+        $this->authorize('delete', $comment);
+        
+        $comment->delete();
+        
+        return back();
+    }
 }
